@@ -106,6 +106,13 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!$post = $this->post->find($id))
+            return redirect()->back();
+
+        $post->delete();
+
+        return redirect()
+                    ->route('posts.index')
+                    ->withSuccess('Post deletado com sucesso!');
     }
 }
