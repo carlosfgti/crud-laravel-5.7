@@ -73,7 +73,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (!$post = $this->post->find($id))
+            return redirect()->back();
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
