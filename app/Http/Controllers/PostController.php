@@ -44,7 +44,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = $this->post->create($request->all());
+
+        return redirect()
+                    ->route()
+                    ->withSuccess('Post Cadastrado com sucesso!');
     }
 
     /**
