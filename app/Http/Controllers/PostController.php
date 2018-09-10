@@ -47,7 +47,7 @@ class PostController extends Controller
         $post = $this->post->create($request->all());
 
         return redirect()
-                    ->route()
+                    ->route('posts.index')
                     ->withSuccess('Post Cadastrado com sucesso!');
     }
 
