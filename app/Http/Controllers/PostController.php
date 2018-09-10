@@ -59,7 +59,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        if (!$post = $this->post->find($id))
+            return redirect()->back();
+
+        return view('posts.show', compact('post'));
     }
 
     /**
