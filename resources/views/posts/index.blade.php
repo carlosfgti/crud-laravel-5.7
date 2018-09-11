@@ -6,7 +6,7 @@
 
     @foreach ($posts as $post)
     <article class="post">
-        <a href="">
+        <a href="{{ route('posts.show', $post->id) }}">
             @if ($post->image)
                 <img src="{{ url("storage/posts/{$post->image}") }}" alt="{{ $post->title }}">
             @else
