@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Listagem dos posts')
+
 @section('content')
 
 <h1>

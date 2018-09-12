@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Cadastrar Novo Post')
+
 @section('content')
 
 <h1>Cadastrar Post</h1>
