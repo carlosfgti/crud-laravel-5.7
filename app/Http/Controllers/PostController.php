@@ -44,11 +44,30 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = $this->post->create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $name = kebab_case($request->title);
+            $extension = $request->image->extension();
+            $nameImage = "{$name}.$extension";
+            $data['image'] = $nameImage;
+
+            $upload = $request->image->storeAs('posts', $nameImage);
+
+            if (!$upload)
+                return redirect()
+                            ->back()
+                            ->with('errors', ['Falha no Upload'])
+                            ->withInput();
+        }
+
+        $post = $request->user()
+                            ->posts()
+                            ->create($data);
 
         return redirect()
                     ->route('posts.index')
-                    ->withSuccess('Post Cadastrado com sucesso!');
+                    ->withSuccess('Cadastro realizado com sucesso!');
     }
 
     /**
