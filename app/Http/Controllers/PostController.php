@@ -21,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = $this->post->latest()->paginate();
+        $posts = $this->post->with('user')->latest()->paginate();
 
         return view('posts.index', compact('posts'));
     }
