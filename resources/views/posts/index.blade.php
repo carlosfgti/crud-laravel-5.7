@@ -40,6 +40,8 @@
         <p>Nenhum post cadastrado!</p>
     </li>
     @endforelse
+
+    {!! $posts->links() !!}
 </ul>
 
 @endsection
