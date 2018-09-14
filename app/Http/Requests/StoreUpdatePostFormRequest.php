@@ -24,7 +24,7 @@ class StoreUpdatePostFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|max:100',
+            'title' => 'required|min:3|max:100|unique:posts',
             'body'  => 'required|min:3|max:40000',
             'image' => 'image',
         ];
