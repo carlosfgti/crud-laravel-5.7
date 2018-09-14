@@ -23,8 +23,10 @@ class StoreUpdatePostFormRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->segment(2);
+
         return [
-            'title' => 'required|min:3|max:100|unique:posts',
+            'title' => "required|min:3|max:100|unique:posts,title,{$id},id",
             'body'  => 'required|min:3|max:40000',
             'image' => 'image',
         ];
