@@ -15,7 +15,10 @@ class PostController extends Controller
     {
         $this->post = $post;
 
-        // $this->middleware('auth');
+        $this->middleware('auth')
+                    ->except([
+                        'index', 'show'
+                    ]);
     }
 
     /**
