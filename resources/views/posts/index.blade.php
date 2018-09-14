@@ -11,6 +11,8 @@
     </a>
 </h1>
 
+@include('includes.alerts')
+
 <ul class="media-list">
     @forelse($posts as $post)
     <li class="media">
