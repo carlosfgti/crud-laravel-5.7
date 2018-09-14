@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -112,7 +113,30 @@ class PostController extends Controller
         if (!$post = $this->post->find($id))
             return redirect()->back();
 
-        $post->update($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Remove image if exists
+            if ($post->image) {
+                if (Storage::exists("posts/{$post->image}"))
+                    Storage::delete("posts/{$post->image}");
+            }
+            
+            $name = kebab_case($request->title);
+            $extension = $request->image->extension();
+            $nameImage = "{$name}.$extension";
+            $data['image'] = $nameImage;
+
+            $upload = $request->image->storeAs('posts', $nameImage);
+
+            if (!$upload)
+                return redirect()
+                            ->back()
+                            ->with('errors', ['Falha no Upload'])
+                            ->withInput();
+        }
+
+        $post->update($data);
 
         return redirect()
                     ->route('posts.index')
