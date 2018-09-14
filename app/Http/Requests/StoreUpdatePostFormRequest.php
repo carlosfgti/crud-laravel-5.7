@@ -26,6 +26,7 @@ class StoreUpdatePostFormRequest extends FormRequest
         return [
             'title' => 'required|min:3|max:100',
             'body'  => 'required|min:3|max:40000',
+            'image' => 'image',
         ];
     }
 }
