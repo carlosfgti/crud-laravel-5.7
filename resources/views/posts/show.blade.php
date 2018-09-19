@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Detalhes do post: {$post->title}")
+
 @section('content')
 
 <h1>Detalhes do post <b>{{ $post->title }}</b></h1>
