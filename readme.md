@@ -39,6 +39,6 @@ php artisan migrate --seed
 # Create Server
 php artisan serve
 
-# Queue
-php artisan queue:work
+# Access project
+http://localhost:8080
 ```
