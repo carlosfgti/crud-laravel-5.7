@@ -36,6 +36,9 @@ php artisan key:generate
 # Run migrations (tables and Seeders)
 php artisan migrate --seed
 
+# Link storage
+php artisan storage:link
+
 # Create Server
 php artisan serve
 
